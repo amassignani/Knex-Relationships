@@ -15,7 +15,9 @@ router.get('/', function (req, res) {
 
 router.get('/profile/:id', function (req, res) {
   const id = Number(req.params.id)
-
+  // db.getUsers(req.app.get('connection'))
+  //   .join('profiles', 'profiles.user_id', '=', 'users.id')
+  //   .select('users.name', 'profiles.url')
   db.getUser(id, req.app.get('connection'))
     .then(profile => {
       res.render('profile', profile[0])
